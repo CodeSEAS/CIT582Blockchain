@@ -24,4 +24,4 @@ def hash_collision(k):
 
 
 # if __name__ == '__main__':
-#     print(hash_collision(5))
+#     print(hash_collision(11))
