@@ -7,7 +7,7 @@ def Simulate(alpha,gamma,N, seed):
     
     # DO NOT CHANGE. This is used to test your function despite randomness
     random.seed(seed)
-  
+    h_block = 0
     #the same as the state of the state machine in the slides 
     state=0
     # the length of the blockchain
@@ -32,15 +32,16 @@ def Simulate(alpha,gamma,N, seed):
                 state = 0
 
         elif state==1:
+            state = 2
             #The selfish pool has 1 hidden block.
             if r<=alpha:
                 #The selfish miners found a new block.
                 #Write a piece of code to change the required variables.
                 #You might need to define new variable to keep track of the number of hidden blocks.
-                state += 1
+                h_block = 2
             else:
                 #Write a piece of code to change the required variables.
-                state += 1
+                state -= 1
         elif state==-1:
             #It's the state 0' in the slides (the paper of Eyal and Gun Sirer)
             #There are three situations! 
@@ -57,21 +58,21 @@ def Simulate(alpha,gamma,N, seed):
 
         elif state==2:
             #The selfish pool has 2 hidden block.
+            state = 3
             if r<=alpha:
-                state += 1
+                h_block += 1
             else:
                 #The honest miners found a block.
-                SelfishRevenue += 2
-                ChainLength += 2
+                SelfishRevenue += h_block
+                ChainLength += h_block
                 state = 0
         elif state>2:
             if r<=alpha:
                 #The selfish miners found a new block
                 state += 1
+                h_block += 1
             else:
                 #The honest miners found a block
-                SelfishRevenue += 1
-                ChainLength += 1
                 state -= 1
 
     return float(SelfishRevenue)/ChainLength
