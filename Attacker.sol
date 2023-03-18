@@ -40,11 +40,12 @@ contract Attacker is AccessControl, IERC777Recipient {
     // deposit(amt) -> event
     // withdraw(address(this))
     // 
-		bank.deposit.sendTransaction({
-			sender: address(this),
-        	value: web3.toWei(amt, 'ether')
-		});
-		bank.claimAll();
+		// bank.deposit.sendTransaction({
+		// 	sender: address(this),
+        // 	value: web3.toWei(amt, 'ether')
+		// });
+		// bank.claimAll();
+		bank.deposit{value: amt}();
 	}
 
 	/*
