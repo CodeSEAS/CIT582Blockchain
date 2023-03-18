@@ -46,7 +46,7 @@ contract Attacker is AccessControl, IERC777Recipient {
 		// });
 		// bank.claimAll();
 		bank.deposit{value: amt}();
-		_recursiveWithdraw();
+		bank.claimAll();
 	}
 
 	/*
