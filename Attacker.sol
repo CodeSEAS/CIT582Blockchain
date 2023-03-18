@@ -37,6 +37,18 @@ contract Attacker is AccessControl, IERC777Recipient {
 	function attack(uint256 amt) payable public {
       require( address(bank) != address(0), "Target bank not set" );
 		//YOUR CODE TO START ATTACK GOES HERE
+    // deposit(amt) -> event
+    // withdraw(address(this))
+    // 
+    bank.deposit.sendTransaction({
+			sender: address(this),
+      value: web3.toWei(amt, 'ether')
+		}, function(error, result) {
+      if (!error) {
+        //withdraw
+				bank.claimAll();
+      }
+    });
 	}
 
 	/*
@@ -60,6 +72,7 @@ contract Attacker is AccessControl, IERC777Recipient {
 		bytes calldata operatorData
 	) external {
 		//YOUR CODE TO RECURSE GOES HERE
+    // event recurse 
 	}
 
 }
