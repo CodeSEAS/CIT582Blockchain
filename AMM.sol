@@ -73,7 +73,6 @@ contract AMM is AccessControl{
 		}
 
 		invariant = ERC20(tokenA).balanceOf(address(this)) * ERC20(tokenB).balanceOf(address(this));
-		emit Swap(sellToken, getTokenAddress(1 - getTokenIndex(sellToken)), sellAmount, swapAmt);
 
 		// uint256 new_invariant = ERC20(tokenA).balanceOf(address(this))*ERC20(tokenB).balanceOf(address(this));
 		// require( new_invariant >= invariant, 'Bad trade' );
