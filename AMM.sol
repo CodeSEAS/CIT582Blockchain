@@ -72,8 +72,9 @@ contract AMM is AccessControl{
 		ERC20(tokenA).transferFrom(msg.sender, address(this), amtA);
     	ERC20(tokenB).transferFrom(msg.sender, address(this), amtB);
     
-    	invariant = ERC20(tokenA).balanceOf(address(this)) * ERC20(tokenB).balanceOf(address(this));
-
+    	uint256 new_invariant = ERC20(tokenA).balanceOf(address(this)) * ERC20(tokenB).balanceOf(address(this));
+    	require(new_invariant >= invariant, 'Bad trade');
+    	invariant = new_invariant;
 		emit LiquidityProvision( msg.sender, amtA, amtB );
 	}
 
