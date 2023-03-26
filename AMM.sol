@@ -52,8 +52,8 @@ contract AMM is AccessControl{
 		require( sellToken == tokenA || sellToken == tokenB, 'Invalid token' );
 		require( sellAmount > 0, 'Cannot trade 0' );
 		require( invariant > 0, 'No liquidity' );
-		uint256 qtyA;
-		uint256 qtyB;
+		uint256 amount;
+		uint256 newSellAmount;
 		uint256 swapAmt;
 
 		//YOUR CODE HERE 
