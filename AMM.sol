@@ -88,10 +88,10 @@ contract AMM is AccessControl{
 			// 2 * 0.9994 * 3 = 5.999
 			// 50 / A = 10 * 3
 			amount = ERC20(tokenA).balanceOf(address(this));
-			swapAmt = invariant * newSellAmount / amount / amount;
+			swapAmt = invariant * newSellAmount / amount;
 		} else {
 			amount = ERC20(tokenB).balanceOf(address(this));
-			swapAmt = invariant * newSellAmount / amount / amount;
+			swapAmt = invariant * newSellAmount / amount;
 		}
 
 		ERC20(sellToken).transferFrom(msg.sender, address(this), sellAmount);
