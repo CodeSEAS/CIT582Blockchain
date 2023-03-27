@@ -30,13 +30,15 @@ def send_tokens( receiver_pk, tx_amount ):
     # sk, sender_pk = algosdk.account.generate_account()
 
     sk = '2eZvFiNAuR9tf8xfqGDzjGr3ePTWQjSdt8icGdFKKEdBo19nzTajtFYIjoJnVNCLocabcK+W4yaX+Kk5l5fuTg=='
-    sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
+    # sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
     print("sk:", sk, " pk: ", sender_pk)
+    sender_pk = mnemonic.to_public_key(mnemonic.from_private_key(sk))
 
     sign = transaction.PaymentTxn(sender_pk, tx_fee, first_valid_round, last_valid_round, gen_hash, receiver_pk, tx_amount).sign(sk)
-    acl.send_transaction(sign)
 
-    return sender_pk, sign.transaction.get_txid()
+    txid = acl.send_transaction(sign.sign(sk))
+
+    return sender_pk, txid
 
 # Function from Algorand Inc.
 def wait_for_confirmation(client, txid):
