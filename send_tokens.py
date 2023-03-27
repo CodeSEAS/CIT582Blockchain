@@ -30,13 +30,13 @@ def send_tokens( receiver_pk, tx_amount ):
     # sk, sender_pk = algosdk.account.generate_account()
 
     sk = '2eZvFiNAuR9tf8xfqGDzjGr3ePTWQjSdt8icGdFKKEdBo19nzTajtFYIjoJnVNCLocabcK+W4yaX+Kk5l5fuTg=='
-    # sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
-    print("sk:", sk, " pk: ", sender_pk)
-    sender_pk = mnemonic.to_public_key(mnemonic.from_private_key(sk))
+    sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
+
 
     sign = transaction.PaymentTxn(sender_pk, tx_fee, first_valid_round, last_valid_round, gen_hash, receiver_pk, tx_amount).sign(sk)
-
-    txid = acl.send_transaction(sign.sign(sk))
+    signed_sign = sign.sign(sk)
+    txid = sign.get_txid()
+    txid = acl.send_transaction(signed_sign)
 
     return sender_pk, txid
 
