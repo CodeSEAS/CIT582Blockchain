@@ -41,7 +41,7 @@ def process_order(order):
                                     sell_amount = new_inserted_order_existing_order_difference / new_inserted_order_rate)
             session.add(modified_order)
             session.commit()
-            process_order(modified_order)
+            # process_order(modified_order)
 
         elif new_inserted_order.buy_amount < existing_order.sell_amount:
             new_inserted_order_existing_order_difference = existing_order.sell_amount - new_inserted_order.buy_amount
@@ -56,7 +56,7 @@ def process_order(order):
                                     sell_amount = new_inserted_order_existing_order_difference)
             session.add(modified_order)
             session.commit()
-            process_order(modified_order)
+            # process_order(modified_order)
         else:
             session.commit()
 
