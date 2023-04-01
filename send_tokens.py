@@ -38,10 +38,14 @@ def send_tokens( receiver_pk, tx_amount ):
     txid = sign.get_txid()
     acl.send_transaction(signed_sign)
 
+    print(f"sender_pk: {sender_pk}; txid: {txid}")
+
     return sender_pk, txid
 
 # Function from Algorand Inc.
 def wait_for_confirmation(client, txid):
+
+    print(f"wait_for_confirmation txid: {txid}")
     """
     Utility function to wait until the transaction is
     confirmed before proceeding.
