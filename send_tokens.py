@@ -3,7 +3,7 @@
 from algosdk.v2client import algod
 from algosdk import mnemonic
 from algosdk import transaction
-import algosdk
+from algosdk import account
 
 #Connect to Algorand node maintained by PureStake
 algod_address = "https://testnet-algorand.api.purestake.io/ps2"
@@ -17,6 +17,7 @@ acl = algod.AlgodClient(algod_token, algod_address, headers)
 min_balance = 100000 #https://developer.algorand.org/docs/features/accounts/#minimum-balance
 
 def send_tokens( receiver_pk, tx_amount ):
+    print(f"send_tokens1")
     params = acl.suggested_params()
     gen_hash = params.gh
     first_valid_round = params.first
@@ -27,10 +28,10 @@ def send_tokens( receiver_pk, tx_amount ):
     # pk:  IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M
 
     #Your code here
-    # sk, sender_pk = algosdk.account.generate_account()
+    sk, sender_pk = account.generate_account()
 
-    sk = '2eZvFiNAuR9tf8xfqGDzjGr3ePTWQjSdt8icGdFKKEdBo19nzTajtFYIjoJnVNCLocabcK+W4yaX+Kk5l5fuTg=='
-    sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
+    # sk = '2eZvFiNAuR9tf8xfqGDzjGr3ePTWQjSdt8icGdFKKEdBo19nzTajtFYIjoJnVNCLocabcK+W4yaX+Kk5l5fuTg=='
+    # sender_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
 
 
     sign = transaction.PaymentTxn(sender_pk, tx_fee, first_valid_round, last_valid_round, gen_hash, receiver_pk, tx_amount)
