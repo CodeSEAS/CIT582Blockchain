@@ -18,10 +18,10 @@ with open('/home/codio/workspace/abi.json', 'r') as f:
 ############################
 #Connect to an Ethereum node
 # api_url = #YOU WILL NEED TO TO PROVIDE THE URL OF AN ETHEREUM NODE
-# token = "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
-# api_url = f"https://c2emjgrvmi7cabd41mpg.bdnodes.net?auth={token}"
-# provider = HTTPProvider(api_url)
-# web3 = Web3(provider)
+token = "Mwb3juVAfI1g2RmA1JCGdYk-2_BmFrnLOtbomP1oDa4"
+api_url = f"https://c2emjgrvmi7cabd41mpg.bdnodes.net?auth={token}"
+provider = HTTPProvider(api_url)
+web3 = Web3(provider)
 
 def get_ape_info(apeID):
     assert isinstance(apeID, int), f"{apeID} is not an int"
@@ -38,9 +38,9 @@ def get_ape_info(apeID):
         if attribute['trait_type'] == 'Eyes':
             data['eyes'] = attribute['value']
     
-    # contract = web3.eth.contract(address=contract_address,abi=abi)
-    # supply = contract.functions.totalSupply().call()
-    # print( f"Supply = {supply}" )
+    contract = web3.eth.contract(address=contract_address,abi=abi)
+    supply = contract.functions.totalSupply().call()
+    print( f"Supply = {supply}" )
 
     assert isinstance(data, dict), f'get_ape_info{apeID} should return a dict'
     assert all([a in data.keys() for a in
