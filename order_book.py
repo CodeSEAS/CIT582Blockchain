@@ -15,11 +15,11 @@ def process_order(order):
     session.commit()
 
     existing_order = session.query(Order).filter(Order.filled == None,
-                                                 Order.sell_currency == order.buy_currency, 
-                                                 Order.buy_currency == order.sell_currency,
-                                                ((Order.sell_amount / Order.buy_amount) >= (order.buy_amount / order.sell_amount)),
+                                                 Order.sell_currency == new_inserted_order.buy_currency, 
+                                                 Order.buy_currency == new_inserted_order.sell_currency,
+                                                ((Order.sell_amount / Order.buy_amount) >= (new_inserted_order.buy_amount / new_inserted_order.sell_amount)),
                                                 Order.sell_amount != Order.buy_amount, 
-                                                order.buy_amount != order.sell_amount)
+                                                new_inserted_order.buy_amount != new_inserted_order.sell_amount)
     if existing_order is None:
         return
     else:
