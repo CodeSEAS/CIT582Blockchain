@@ -18,8 +18,7 @@ with open('/home/codio/workspace/abi.json', 'r') as f:
 ############################
 #Connect to an Ethereum node
 # api_url = #YOU WILL NEED TO TO PROVIDE THE URL OF AN ETHEREUM NODE
-token = "Mwb3juVAfI1g2RmA1JCGdYk-2_BmFrnLOtbomP1oDa4"
-api_url = f"https://c2emjgrvmi7cabd41mpg.bdnodes.net?auth={token}"
+api_url = f"https://eth-mainnet.g.alchemy.com/v2/kBQFL6fReQL7Rafl6CSLVbtB9nCRfszA"
 provider = HTTPProvider(api_url)
 web3 = Web3(provider)
 
@@ -41,7 +40,15 @@ def get_ape_info(apeID):
     contract = web3.eth.contract(address=contract_address,abi=abi)
     supply = contract.functions.totalSupply().call()
     print( f"Supply = {supply}" )
+    # Get the current owner
+    owner_address = contract.functions.owner().call()
 
+    # Get the tokenURI of token with ID 1
+    token_uri = contract.functions.tokenURI(1).call()
+
+    print('Current owner:', owner_address)
+    print('Token URI:', token_uri)
+    data['owner'] = owner_address
     assert isinstance(data, dict), f'get_ape_info{apeID} should return a dict'
     assert all([a in data.keys() for a in
                 ['owner', 'image', 'eyes']]), f"return value should include the keys 'owner','image' and 'eyes'"
