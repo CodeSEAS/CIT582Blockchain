@@ -40,10 +40,8 @@ def get_ape_info(apeID):
     contract = web3.eth.contract(address=contract_address,abi=abi)
     supply = contract.functions.totalSupply().call()
     print( f"Supply = {supply}" )
-    # Get the current owner
-    owner_address = contract.functions.owner().call()
 
-    # Get the tokenURI of token with ID 1
+    owner_address = contract.functions.owner().call()
     token_uri = contract.functions.tokenURI(1).call()
 
     print('Current owner:', owner_address)
