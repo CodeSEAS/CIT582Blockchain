@@ -37,7 +37,6 @@ def check_sig(payload,sig):
     payload_pk = payload['pk']
     payload_message = json.dumps(payload)
 
-    result = False
     if payload_platform == 'Ethereum':
         # The signature should be on the entire payload dictionary not just the single “message” field.
         eth_encoded_msg = eth_account.messages.encode_defunct(text = payload_message)
@@ -53,6 +52,8 @@ def check_sig(payload,sig):
             result = True
         else: 
             result = False
+    else:
+        result = False
     return result
 
 def fill_order(order,txes=[]):
@@ -173,21 +174,23 @@ def trade():
         # TODO: Be sure to return jsonify(True) or jsonify(False) depending on if the method was successful
         if result == True:
             return jsonify(True)
+        else:
+            return jsonify(False)
 
 @app.route('/order_book')
 def order_book():
     #Your code here
     #Note that you can access the database session using g.session
-    result = {'data': []}
+    res = {'data': []}
     for o in g.session.query(Order).all():
-        result['data'].append({'sender_pk': o.sender_pk,
-                               'receiver_pk': o.receiver_pk,
-                               'buy_currency': o.buy_currency,
-                               'sell_currency': o.sell_currency,
-                               'buy_amount': o.buy_amount,
-                               'sell_amount': o.sell_amount,
-                               'signature': o.signature})
-    return jsonify(result)
+        res['data'].append({'sender_pk': o.sender_pk,
+                                'receiver_pk': o.receiver_pk,
+                                'buy_currency': o.buy_currency,
+                                'sell_currency': o.sell_currency,
+                                'buy_amount': o.buy_amount,
+                                'sell_amount': o.sell_amount,
+                                'signature': o.signature})
+    return jsonify(res)
 
 if __name__ == '__main__':
     app.run(port='5002')
