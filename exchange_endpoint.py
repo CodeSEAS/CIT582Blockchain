@@ -58,12 +58,20 @@ def check_sig(payload,sig):
 
 def fill_order(order,txes=[]):
     session = g.session
-    new_inserted_order = Order(sender_pk = order['sender_pk'], 
-                               receiver_pk = order['receiver_pk'], 
-                               buy_currency = order['buy_currency'], 
-                               sell_currency = order['sell_currency'], 
-                               buy_amount = order['buy_amount'], 
-                               sell_amount = order['sell_amount'])
+    sender_pk = order.sender_pk
+    receiver_pk = order.receiver_pk
+    buy_currency = order.buy_currency
+    sell_currency = order.sell_currency
+    buy_amount = order.buy_amount
+    sell_amount = order.sell_amount
+    # new_inserted_order = Order(sender_pk = order['sender_pk'], 
+    #                            receiver_pk = order['receiver_pk'], 
+    #                            buy_currency = order['buy_currency'], 
+    #                            sell_currency = order['sell_currency'], 
+    #                            buy_amount = order['buy_amount'], 
+    #                            sell_amount = order['sell_amount'])
+    new_inserted_order = Order(sender_pk=sender_pk, receiver_pk=receiver_pk, buy_currency=buy_currency,
+                       sell_currency=sell_currency, buy_amount=buy_amount, sell_amount=sell_amount)
     session.add(new_inserted_order)
     session.commit()
 
