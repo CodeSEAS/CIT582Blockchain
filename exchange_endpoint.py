@@ -167,7 +167,7 @@ def trade():
                         sell_currency = sell_currency, 
                         buy_amount = buy_amount, 
                         sell_amount = sell_amount)
-
+        print(f'trade: type({type(new_order)}), new_order: {new_order}')
         # TODO: Fill the order
         fill_order(new_order)
         
