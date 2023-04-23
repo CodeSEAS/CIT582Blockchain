@@ -116,7 +116,7 @@ def get_eth_keys(filename = "eth_mnemonic.txt"):
     ALCHEMY_API_KEY = "kBQFL6fReQL7Rafl6CSLVbtB9nCRfszA"
     w3 = Web3(Web3.HTTPProvider(f'https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}')) 
     account = w3.eth.account.create()
-    eth_sk = account.privateKey.hex()
+    eth_sk = account.key.hex()
     eth_pk = account.address
     print(f"get_eth_keys sk: {eth_sk}, pk: {eth_pk}")
     return eth_sk, eth_pk
