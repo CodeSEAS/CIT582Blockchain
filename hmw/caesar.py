@@ -16,8 +16,8 @@ def decrypt(key,ciphertext):
         trans_c_number = (ord(c) - 65 - key) % 26 + 65
         plaintext += chr(trans_c_number)
     return plaintext
-#
-#
-# if __name__ == "__main__":
-#     print(encrypt(-1, "ABCD"))
-#     print(decrypt(-1, "ZABC"))
+
+
+if __name__ == "__main__":
+    print(encrypt(-1, "ABCD"))
+    print(decrypt(-1, "ZABC"))
