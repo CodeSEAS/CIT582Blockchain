@@ -109,7 +109,7 @@ def get_algo_keys():
 
 def get_eth_keys(filename = "eth_mnemonic.txt"):
     # w3 = Web3()
-    from web3 import Web3
+    # from web3 import Web3
     
     # TODO: Generate or read (using the mnemonic secret) 
     # the ethereum public/private keys

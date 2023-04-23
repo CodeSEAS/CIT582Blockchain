@@ -121,8 +121,8 @@ def get_eth_keys(filename = "eth_mnemonic.txt"):
     # account = w3.eth.account.create()
     # eth_sk = account.privateKey.hex()
     # eth_pk = account.address
-    eth_sk = b'N\xa3cW\xb4\xdc10\x84\xf8\x05\xed\x98\xef\xf4\xfe\xa8Z\xfa\xe1\xc5\xf3\x05\xe3\xebM\xc5_7\xf3s\x04'
-    eth_pk = '0xEBE97c09Fa8672f435f88c58fFe08CE495Bb34eF'
+    eth_sk = b'\xc8\x8b\x9f\xd8$q\xec\xcctn.g{`\xb7\r\n\x03\xec)o\xf5\x93\x00\x9f\x80O\x10\xa8\xcc\x80\xbf'
+    eth_pk = '0x88568062EEDB76C28Fb1fFC322A7c538A992C576'
     print(f"get_eth_keys sk: {eth_sk}, pk: {eth_pk}")
     return eth_sk, eth_pk
   
