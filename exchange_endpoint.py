@@ -99,10 +99,13 @@ def get_algo_keys():
     
     # TODO: Generate or read (using the mnemonic secret) 
     # the algorand public/private keys
-    import algosdk as ak
+    # import algosdk as ak
+    #
+    # algo_sk, algo_pk = ak.account.generate_account()
+    # print(f"get_algo_keys sk: {algo_sk}, pk: {algo_pk}")
 
-    algo_sk, algo_pk = ak.account.generate_account()
-    print(f"get_algo_keys sk: {algo_sk}, pk: {algo_pk}")
+    algo_sk = '2eZvFiNAuR9tf8xfqGDzjGr3ePTWQjSdt8icGdFKKEdBo19nzTajtFYIjoJnVNCLocabcK+W4yaX+Kk5l5fuTg=='
+    algo_pk = 'IGRV6Z6NG2R3IVQIR2BGOVGQROQ4NG3QV6LOGJUX7CUTTF4X5ZHC37C66M'
 
     return algo_sk, algo_pk
 
