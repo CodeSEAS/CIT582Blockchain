@@ -113,11 +113,13 @@ def get_eth_keys(filename = "eth_mnemonic.txt"):
     
     # TODO: Generate or read (using the mnemonic secret) 
     # the ethereum public/private keys
-    ALCHEMY_API_KEY = "kBQFL6fReQL7Rafl6CSLVbtB9nCRfszA"
-    w3 = Web3(Web3.HTTPProvider(f'https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}')) 
-    account = w3.eth.account.create()
-    eth_sk = account.key.hex()
-    eth_pk = account.address
+    # ALCHEMY_API_KEY = "kBQFL6fReQL7Rafl6CSLVbtB9nCRfszA"
+    # w3 = Web3(Web3.HTTPProvider(f'https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}')) 
+    # account = w3.eth.account.create()
+    # eth_sk = account.key.hex()
+    # eth_pk = account.address
+    eth_sk = b'N\xa3cW\xb4\xdc10\x84\xf8\x05\xed\x98\xef\xf4\xfe\xa8Z\xfa\xe1\xc5\xf3\x05\xe3\xebM\xc5_7\xf3s\x04'
+    eth_pk = '0xEBE97c09Fa8672f435f88c58fFe08CE495Bb34eF'
     print(f"get_eth_keys sk: {eth_sk}, pk: {eth_pk}")
     return eth_sk, eth_pk
   
